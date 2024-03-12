@@ -1,14 +1,10 @@
 "use client";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Navbar() {
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => setLoading(true), 3000);
-  }, []);
 
   return (
     <>
