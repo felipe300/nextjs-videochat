@@ -1,14 +1,18 @@
 "use client";
 
 import { useUser } from "@clerk/nextjs";
-import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
+import {
+  Call,
+  MemberRequest,
+  useStreamVideoClient,
+} from "@stream-io/video-react-sdk";
 import { Loader2 } from "lucide-react";
 import DescriptionInput from "./DescriptionInput";
 import { useState } from "react";
 import StartTimeInput from "./StartTimeInput";
 import ParticipantsInput from "./ParticipantsInput";
-import MeetingCall from "./MeetingLink";
 import MeetingLink from "./MeetingLink";
+import { getUserId } from "../../app/actions";
 
 export default function CreateMeetingPage() {
   const [descriptionInput, setDescriptionInput] = useState("");
@@ -26,10 +30,26 @@ export default function CreateMeetingPage() {
 
     try {
       const id = crypto.randomUUID();
-      const call = client.call("default", id);
+      const callType = participantInput ? "private-meeting" : "default";
+      const call = client.call(callType, id);
 
+      const membersEmail = participantInput
+        .split(",")
+        .map((email) => email.trim());
+      const memberId = await getUserId(membersEmail);
+      const members: MemberRequest[] = memberId
+        .map((id) => ({ user_id: id, role: "call_member" }))
+        .concat({ user_id: user.id, role: "call_member" })
+        .filter(
+          (val, idx, arr) =>
+            arr.findIndex((val2) => val2.user_id === val.user_id) === idx,
+        );
+
+      const starts_at = new Date(startTimeInput || Date.now()).toISOString();
       await call.getOrCreate({
         data: {
+          starts_at,
+          members,
           custom: {
             description: descriptionInput,
           },
