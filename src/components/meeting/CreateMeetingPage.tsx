@@ -13,6 +13,7 @@ import StartTimeInput from "./StartTimeInput";
 import ParticipantsInput from "./ParticipantsInput";
 import MeetingLink from "./MeetingLink";
 import { getUserId } from "../../app/actions";
+import Button from "components/Button";
 
 export default function CreateMeetingPage() {
   const [descriptionInput, setDescriptionInput] = useState("");
@@ -83,9 +84,9 @@ export default function CreateMeetingPage() {
           value={participantInput}
           onChange={setParticipantInput}
         />
-        <button onClick={createMeeting} className="w-full">
+        <Button onClick={createMeeting} className="w-full">
           Create meeting
-        </button>
+        </Button>
       </div>
       {call && <MeetingLink call={call} />}
     </section>
