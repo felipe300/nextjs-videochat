@@ -1,0 +1,23 @@
+import { useCallStateHooks } from "@stream-io/video-react-sdk";
+import MeetingEndedScreen from "./MeetingEndedScreen";
+import UpcomingMeetingScreen from "./UpcomingMeetingScreen";
+
+export default function MeetingScreen() {
+  const { useCallEndedAt, useCallStartsAt } = useCallStateHooks();
+
+  const callEndedAt = useCallEndedAt();
+  const callStartAt = useCallStartsAt();
+
+  const callIsInFuture = callStartAt && new Date(callStartAt) > new Date();
+  const callHasEnded = !!callEndedAt;
+
+  if (callHasEnded) {
+    return <MeetingEndedScreen />;
+  }
+
+  if (callIsInFuture) {
+    return <UpcomingMeetingScreen />;
+  }
+
+  return <div>Call UI</div>;
+}

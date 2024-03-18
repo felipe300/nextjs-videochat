@@ -47,7 +47,7 @@ export default function StartTimeInput({
           <input
             type="datetime-local"
             value={value}
-            onChange={(e) => e.target.value}
+            onChange={(e) => onChange(e.target.value)}
             min={dateTimeLocalNow}
             className="w-full rounded-md border border-gray-300 p-2"
           />
