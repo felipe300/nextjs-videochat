@@ -1,5 +1,5 @@
 import Link from "next/link";
-import useStreamCall from "../../hooks/useStreamCall";
+import useStreamCall from "hooks/useStreamCall";
 import { buttonClassName } from "components/Button";
 
 export default function UpcomingMeetingScreen() {

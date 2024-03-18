@@ -19,8 +19,9 @@
     ],
     "paths": {
       "components/*": ["./src/components/*"],
-      "pages/*": ["./src/pages/*"],
+      "hooks/*": ["./src/hooks/*"],
       "lib/*": ["./src/lib/*"],
+      "pages/*": ["./src/pages/*"],
       "utils/*": ["./src/utils/*"]
     }
   },
