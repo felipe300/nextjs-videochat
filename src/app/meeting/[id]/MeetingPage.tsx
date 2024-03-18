@@ -1,16 +1,8 @@
 "use client";
 
-import {
-  Call,
-  CallControls,
-  SpeakerLayout,
-  StreamCall,
-  StreamTheme,
-  useStreamVideoClient,
-} from "@stream-io/video-react-sdk";
+import { StreamCall, StreamTheme } from "@stream-io/video-react-sdk";
 import { Loader2 } from "lucide-react";
-import { useState } from "react";
-import useLoadCall from "../../../hooks/useLoadCall";
+import useLoadCall from "hooks/useLoadCall";
 import { useUser } from "@clerk/nextjs";
 import MeetingScreen from "../MeetingScreen";
 
