@@ -1,9 +1,10 @@
-import { SpeakerLayout, useCallStateHooks } from "@stream-io/video-react-sdk";
+import { useCallStateHooks } from "@stream-io/video-react-sdk";
 import MeetingEndedScreen from "./MeetingEndedScreen";
 import UpcomingMeetingScreen from "./UpcomingMeetingScreen";
 import { useState } from "react";
 import useStreamCall from "hooks/useStreamCall";
 import SetupUI from "./SetupUI";
+import CallUI from "./CallUI";
 
 export default function MeetingScreen() {
   const call = useStreamCall();
@@ -41,7 +42,7 @@ export default function MeetingScreen() {
         </p>
       )}
       {setupComplete ? (
-        <SpeakerLayout />
+        <CallUI />
       ) : (
         <SetupUI onSetuComplete={handleSetupComplete} />
       )}

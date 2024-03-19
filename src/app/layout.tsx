@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>
+        <body className={inter.className} suppressHydrationWarning={true}>
           <ClientProvider>
             <Navbar />
             <main className="m-auto max-w-5xl px-3 py-6">{children}</main>
