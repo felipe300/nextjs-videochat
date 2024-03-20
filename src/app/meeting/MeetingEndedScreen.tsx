@@ -1,4 +1,5 @@
 import { buttonClassName } from "components/Button";
+import RecordingList from "components/RecordingList";
 import Link from "next/link";
 
 export default function MeetingEndedScreen() {
@@ -8,6 +9,10 @@ export default function MeetingEndedScreen() {
       <Link href="/" className={buttonClassName}>
         Go Home
       </Link>
+      <div className="space-y-3">
+        <h2 className="text-center text-xl font-bold">Recordings</h2>
+        <RecordingList />
+      </div>
     </div>
   );
 }
